@@ -1,0 +1,19 @@
+name: 'ci'
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  base:
+    name: 'terraform'
+    uses: bootstrapper-demo-org/cicd/.github/workflows/tf_infra_ci.yml@main
+    with:
+      workdir: base
+    secrets:
+      tf_api_token: ${{ secrets.TF_API_TOKEN }}
+      gh_owner: ${{ secrets.GH_OWNER }}
+      gh_token: ${{ secrets.GH_TOKEN }}
+      aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
